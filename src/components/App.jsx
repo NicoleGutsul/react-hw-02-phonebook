@@ -6,6 +6,7 @@ export class App extends Component {
   render () {
     return (
     <>
+      <h1>Phonebook</h1>
       <ContactForm/>
      
     </>
