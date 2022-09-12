@@ -1,4 +1,3 @@
-import { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from 'yup';
 
@@ -16,24 +15,22 @@ const schema = yup.object().shape({
 });
 
 // .matches(regularNumber, {message: errorNumber})
-
 const initialValues = {
     name: '',
     number: '',
-} ;
+} ; 
 
-class ContactForm extends Component {
-    handleSubmit = (values, {resetForm}) => {
-        console.log(values);
-        resetForm();
-    };  
-    
-    render() {
+
+const ContactForm = ({ onSubmit }) => {
+  
         return (
             <Formik 
               initialValues={initialValues}
-              onSubmit = {this.handleSubmit}
-              validationSchema={schema}>
+              validationSchema={schema}
+              onSubmit={(values, actions) => {
+                onSubmit(values);
+                actions.resetForm();
+              }}>
                 <Form autoComplete="off">
                     <label htmlFor="name">
                         <p>Name</p>
@@ -64,6 +61,6 @@ class ContactForm extends Component {
         )
     
 }
-}
+
 
 export default ContactForm;
