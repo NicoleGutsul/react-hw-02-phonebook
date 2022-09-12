@@ -8,6 +8,13 @@ export class App extends Component {
     contacts: [],
     filter: '',
   }
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.filter(contact => ContactList.id !== contactId),
+    }))
+  }
+  
   render () {
     return (
     <>
