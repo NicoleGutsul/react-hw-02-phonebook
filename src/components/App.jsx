@@ -21,12 +21,37 @@ export class App extends Component {
     }))
   }
 
+  addContacts = (data) => {
+    console.log(data);
+
+    const {name, number} = data;
+
+    const namesArray = this.state.contacts.map(contact => contact.name);
+
+    console.log(namesArray);
+
+    if (namesArray.includes(name)) {
+      alert("{name} is already in contacts");
+    }
+    else {
+      const contacts = {
+        id: nanoid(),
+        name,
+        number,
+      };
+
+      this.setState(prevState => ({
+        contacts: [contacts, ...prevState.contacts],
+      }))
+    }
+  }
+
 
   render () {
     return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm/>
+      <ContactForm onSubmit={this.addContacts}/>
 
       <ContactList contacts={this.state.contacts} onDeleteContact={this.deleteContact}/>
      
