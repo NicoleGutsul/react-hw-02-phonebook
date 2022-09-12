@@ -4,6 +4,10 @@ import ContactList from './ContactList/ContactList';
 
 
 export class App extends Component {
+  state = {
+    contacts: [],
+    filter: '',
+  }
   render () {
     return (
     <>
